@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defense/Ciudadano - Guerra Política en Tulcán</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="description" content="Juego de estrategia política contra la corrupción municipal en Tulcán">
+    <meta name="keywords" content="juego, corrupción, tulcán, estrategia, política">
+    <meta name="author" content="Defensor Ciudadano">
+    <style>
+        /* Reset y base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #674c3c;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #ecf0f1;
+        }
+        body {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+            color: var(--light);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(25, 30, 40, 0.95);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .subtitle {
+            color: var(--light);
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        .game-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .panel {
+            background: rgba(40, 45, 60, 0.8);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .panel h2 {
+            color: var(--warning);
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .stat {
+            text-align: center;
+            background: rgba(30, 35, 50, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            flex: 1;
+            margin: 0 5px;
+        }
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--success);
+        }
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        .action-warning {
+            background: var(--warning);
+        }
+        .action-warning:hover {
+            background: #e67e22;
+        }
+        .action-success {
+            background: var(--success);
+        }
+        .action-success:hover {
+            background: #27ae60;
+        }
+        .news-feed {
+            background: rgba(30, 35, 50, 0.7);
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .news-item {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .game-area {
+                grid-template-columns: 1fr;
+            }
+            .actions {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Defense/Ciudadano</h1>
+            <p class="subtitle">Guerra Política contra la Corrupción en Tulcán</p>
+        </header>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-label">Apoyo Ciudadano</div>
+                <div class="stat-value">65%</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Presupuesto</div>
+                <div class="stat-value">$45,000</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Influencia</div>
+                <div class="stat-value">72%</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Corrupción</div>
+                <div class="stat-value">38%</div>
+            </div>
+        </div>
+        <div class="game-area">
+            <div class="panel">
+                <h2>Acciones Disponibles</h2>
+                <div class="actions">
+                    <button class="action-success">Organizar Protesta</button>
+                    <button>Denuncia Pública</button>
+                    <button>Alianza Estratégica</button>
+                    <button class="action-warning">Investigación Periodística</button>
+                    <button>Presión Legal</button>
+                    <button class="action-success">Campaña de Conciencia</button>
+                </div>
+                <div class="news-feed">
+                    <h3>Últimas Noticias</h3>
+                    <div class="news-item">
+                        <strong>Alcalde anuncia nuevo proyecto de infraestructura</strong>
+                        <p>Críticos cuestionan la transparencia en la licitación.</p>
+                    </div>
+                    <div class="news-item">
+                        <strong>Manifestación pacífica frente al municipio</strong>
+                        <p>Ciudadanos exigen acceso a información pública.</p>
+                    </div>
+                    <div class="news-item">
+                        <strong>Nuevo escándalo de contratos emerge</strong>
+                        <p>Empresas vinculadas a funcionarios ganan licitaciones.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <h2>Mapa de Influencia</h2>
+                <div style="background: #1e2332; height: 300px; border-radius: 5px; display: flex; justify-content: center; align-items: center;">
+                    <p>Mapa interactivo de Tulcán mostrando zonas de influencia</p>
+                </div>
+                <h2 style="margin-top: 20px;">Objetivos</h2>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Reducir la corrupción municipal al 15%</li>
+                    <li>Aumentar el apoyo ciudadano al 80%</li>
+                    <li>Lograr 3 victorias legales contra funcionarios corruptos</li>
+                    <li>Establecer 5 alianzas estratégicas</li>
+                </ul>
+            </div>
+        </div>
+        <footer>
+            <p>Defensor Ciudadano - Juego de estrategia política | Tulcán, Ecuador</p>
+        </footer>
+    </div>
+</body>
+</html>
