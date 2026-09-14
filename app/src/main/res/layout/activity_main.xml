@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/nd_bg">
+<ScrollView android:id="@+id/pairScreen" android:layout_width="match_parent" android:layout_height="match_parent"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
+<TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Danny Cardona · Repartidor" android:textColor="@color/nd_text" android:textSize="28sp" android:textStyle="bold" />
+<TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Ingrese el código temporal de 6 dígitos." android:textColor="@color/nd_muted" />
+<EditText android:id="@+id/codeInput" android:layout_width="match_parent" android:layout_height="64dp" android:layout_marginTop="28dp" android:hint="000000" android:gravity="center" android:inputType="number" android:maxLength="6" android:textColor="@color/nd_text" android:textColorHint="@color/nd_muted" android:textSize="28sp" />
+<Button android:id="@+id/pairButton" android:layout_width="match_parent" android:layout_height="58dp" android:layout_marginTop="16dp" android:text="VINCULAR ENTREGA" />
+<ProgressBar android:id="@+id/pairProgress" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:layout_marginTop="12dp" android:visibility="gone" />
+<TextView android:id="@+id/pairMessage" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:textColor="@color/nd_error" />
+</LinearLayout></ScrollView>
+<ScrollView android:id="@+id/orderScreen" android:layout_width="match_parent" android:layout_height="match_parent" android:visibility="gone"><LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
+<TextView android:id="@+id/orderTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/nd_text" android:textSize="24sp" android:textStyle="bold" />
+<TextView android:id="@+id/orderStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/nd_green" />
+<TextView android:id="@+id/customerName" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:textColor="@color/nd_text" android:textSize="20sp" android:textStyle="bold" />
+<TextView android:id="@+id/customerReference" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/nd_muted" />
+<TextView android:id="@+id/orderTotal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:textColor="@color/nd_text" android:textSize="28sp" android:textStyle="bold" />
+<TextView android:id="@+id/paymentLabel" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/nd_muted" />
+<Button android:id="@+id/callButton" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="16dp" android:text="LLAMAR CLIENTE" />
+<Button android:id="@+id/whatsAppButton" android:layout_width="match_parent" android:layout_height="52dp" android:text="WHATSAPP" />
+<TextView android:id="@+id/gpsState" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:padding="14dp" android:text="GPS todavía no iniciado" android:textColor="@color/nd_warning" />
+<Button android:id="@+id/acceptButton" android:layout_width="match_parent" android:layout_height="58dp" android:layout_marginTop="14dp" android:text="ACEPTAR Y ACTIVAR GPS" />
+<Button android:id="@+id/startRouteButton" android:layout_width="match_parent" android:layout_height="58dp" android:text="INICIAR RUTA" android:enabled="false" />
+<Button android:id="@+id/deliveredButton" android:layout_width="match_parent" android:layout_height="58dp" android:text="MARCAR ENTREGADO" android:enabled="false" />
+<Button android:id="@+id/stopGpsButton" android:layout_width="match_parent" android:layout_height="52dp" android:text="PAUSAR GPS DE PRUEBA" />
+<TextView android:id="@+id/orderMessage" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:textColor="@color/nd_muted" />
+</LinearLayout></ScrollView>
+</FrameLayout>
