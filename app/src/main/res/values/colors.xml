@@ -1,0 +1,11 @@
+<resources>
+    <color name="nd_bg">#07110D</color>
+    <color name="nd_card">#0D1913</color>
+    <color name="nd_green">#18DF88</color>
+    <color name="nd_green_dark">#0A7C49</color>
+    <color name="nd_text">#F3F7F4</color>
+    <color name="nd_muted">#94A49B</color>
+    <color name="nd_line">#274438</color>
+    <color name="nd_warning">#F2C66D</color>
+    <color name="nd_error">#FF9DAA</color>
+</resources>
