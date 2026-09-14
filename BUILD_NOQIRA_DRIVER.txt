@@ -1,1 +1,2 @@
-Trigger APK build for branch noqira-driver-build.
+Build NOQIRA Driver v0.2 deep-link pairing
+2026-09-14T13:55:00-05:00
