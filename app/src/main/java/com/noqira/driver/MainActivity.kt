@@ -49,15 +49,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         bindViews()
         configureActions()
-        handleDeepLink(intent)
+        val incomingCode = extractDeepLinkCode(intent)
         val token = SessionStore.token(this)
-        if (token.isNullOrBlank()) showPairScreen() else loadSession()
+        if (!incomingCode.isNullOrBlank()) {
+            handleIncomingCode(incomingCode, token)
+        } else if (token.isNullOrBlank()) {
+            showPairScreen()
+        } else {
+            loadSession()
+        }
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
-        handleDeepLink(intent)
+        val incomingCode = extractDeepLinkCode(intent)
+        if (!incomingCode.isNullOrBlank()) {
+            handleIncomingCode(incomingCode, SessionStore.token(this))
+        }
     }
 
     override fun onStart() {
@@ -100,9 +109,34 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleDeepLink(intent: Intent?) {
-        val code = intent?.data?.takeIf { it.scheme == "noqira-driver" }?.getQueryParameter("code")
-        if (!code.isNullOrBlank()) codeInput.setText(code.take(6))
+    private fun extractDeepLinkCode(intent: Intent?): String? {
+        val uri = intent?.data ?: return null
+        if (uri.scheme != "noqira-driver" || uri.host != "dispatch") return null
+        val code = uri.getQueryParameter("code")?.filter { it.isDigit() }?.take(6)
+        return code?.takeIf { it.matches(Regex("^[0-9]{6}$")) }
+    }
+
+    private fun handleIncomingCode(code: String, existingToken: String?) {
+        codeInput.setText(code)
+        pairMessage.text = "Código recibido desde Licorería Danny Cardona."
+        if (existingToken.isNullOrBlank()) {
+            showPairScreen()
+            codeInput.postDelayed({ redeemCode() }, 250)
+            return
+        }
+
+        AlertDialog.Builder(this)
+            .setTitle("Nueva entrega")
+            .setMessage("Hay una sesión guardada en este teléfono. ¿Desea vincular el nuevo código de entrega?")
+            .setNegativeButton("Mantener actual") { _, _ -> loadSession() }
+            .setPositiveButton("Vincular nueva") { _, _ ->
+                stopService(Intent(this, TrackingService::class.java))
+                SessionStore.clearToken(this)
+                showPairScreen()
+                codeInput.postDelayed({ redeemCode() }, 200)
+            }
+            .setCancelable(false)
+            .show()
     }
 
     private fun redeemCode() {
@@ -118,6 +152,7 @@ class MainActivity : AppCompatActivity() {
                 return@runOnUiThread
             }
             SessionStore.saveToken(this, data.optString("app_token"))
+            intent?.data = null
             renderSession(data)
         } }
     }
