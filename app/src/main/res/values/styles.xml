@@ -1,0 +1,11 @@
+<resources>
+    <style name="Theme.NoqiraDriver" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/nd_bg</item>
+        <item name="android:navigationBarColor">@color/nd_bg</item>
+        <item name="colorPrimary">@color/nd_green</item>
+        <item name="colorOnPrimary">@color/nd_bg</item>
+        <item name="android:windowBackground">@color/nd_bg</item>
+    </style>
+</resources>
