@@ -11,8 +11,8 @@ android {
         applicationId = "com.noqira.driver"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1-test"
+        versionCode = 2
+        versionName = "0.2-test"
 
         buildConfigField("String", "SUPABASE_URL", "\"https://isplaovynkkzlfynqvsp.supabase.co\"")
         buildConfigField("String", "SUPABASE_KEY", "\"sb_publishable_ZUchVL8-v5R3s48aeFBqLg_L6aCmvGo\"")
